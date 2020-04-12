@@ -31,3 +31,15 @@ exports.uniqueObject = field => (acc, object) => {
     if (!isDuplicated) acc.push(object);
     return acc;
 }
+
+exports.parseIncomingMovie = movies_length => (movie, index) => {
+    movie.id = movies_length + index;
+    movie.genres = movie.genres.sort();
+    return movie;
+};
+
+exports.isGenreNotCorrect = ({ genres, movies }) =>
+    movies.some(movie => movie.genres.some(genre => !genres.includes(genre)));
+
+exports.isDuplicatedMovie = ({ newMovies, movies }) =>
+    newMovies.some(({ title }) => movies.some(movie => movie.title === title));
