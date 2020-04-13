@@ -6,13 +6,13 @@ const getMovies = require('../src/endpoints/getMovies');
 
 
 (async () => {
-    const server = serverApi({ port: env.httpPort });
-    const movies = await moviesApi(env);
+  const server = serverApi({ port: env.httpPort });
+  const movies = await moviesApi(env);
 
-    [
-        getMovies(movies),
-        addMovie(movies),
-    ].forEach(server.addEndpoint);
+  [
+    getMovies(movies),
+    addMovie(movies),
+  ].forEach(server.addEndpoint);
 
-    server.start();
+  server.start();
 })();

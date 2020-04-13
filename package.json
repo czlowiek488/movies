@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "pre-commit": [
-    "npm run test"
+    "test"
   ],
   "dependencies": {
     "body-parser": "^1.19.0",
