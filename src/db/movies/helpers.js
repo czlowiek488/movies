@@ -1,4 +1,4 @@
-const { random } = require('../../core/random');
+const { random } = require('../../../core/random');
 
 
 exports.getMoviesBetween = (movies, start, end) =>

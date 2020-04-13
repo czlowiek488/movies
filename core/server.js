@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { error } = require('../core/error');
-const validator = require('../core/validator');
+const { error } = require('./error');
+const validator = require('./validator');
 
 
 module.exports = ({ port }) => {
@@ -33,7 +33,8 @@ module.exports = ({ port }) => {
       });
     },
     start: () => {
-      app.use((err, req, res) => {
+      // eslint-disable-next-line no-unused-vars
+      app.use((err, req, res, next) => {
         if (err.code === undefined || err.code === 500) res.status(500).send('Something broke!');
         else res.status(err.code).send(err.message);
       });

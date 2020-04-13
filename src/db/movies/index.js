@@ -1,9 +1,9 @@
 const { resolve } = require('path');
-const logger = require('../../core/logger');
-const { get, upsert } = require('../../core/file-promise');
-const { sleep } = require('../../core/sleep');
-const { tick } = require('../../core/tick');
-const { error } = require('../../core/error');
+const logger = require('../../../core/logger');
+const { get, upsert } = require('../../../core/file-promise');
+const { sleep } = require('../../../core/sleep');
+const { tick } = require('../../../core/tick');
+const { error } = require('../../../core/error');
 const {
   getMoviesBetween,
   getRandomElement,
