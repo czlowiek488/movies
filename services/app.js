@@ -1,12 +1,12 @@
-const httpServer = require('../src/server');
+const serverApi = require('../src/server');
 const env = require('../core/env');
 const moviesApi = require('../src/api');
-const addMovie = require('../endpoints/addMovie');
-const getMovies = require('../endpoints/getMovies');
+const addMovie = require('../src/endpoints/addMovie');
+const getMovies = require('../src/endpoints/getMovies');
 
 
 (async () => {
-    const server = httpServer({ port: env.httpPort });
+    const server = serverApi({ port: env.httpPort });
     const movies = await moviesApi(env);
 
     [

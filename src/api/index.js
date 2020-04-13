@@ -1,9 +1,9 @@
-const logger = require('../core/logger');
-const { get, upsert } = require('../core/file-promise');
+const logger = require('../../core/logger');
+const { get, upsert } = require('../../core/file-promise');
 const { resolve } = require('path');
-const { sleep } = require('../core/sleep');
-const { tick } = require('../core/tick');
-const { error } = require('../core/error');
+const { sleep } = require('../../core/sleep');
+const { tick } = require('../../core/tick');
+const { error } = require('../../core/error');
 const {
     getMoviesBetween,
     getRandomElement,
@@ -33,8 +33,12 @@ module.exports = async ({ databaseFilePath, fileEncoding, fileUpdateDelay }) => 
 
     const accessable = {
         add: (movies) => {
-            if (isGenreNotCorrect({ genres: state.genres, movies })) throw error({ message: 'Genre is not correct!', code: 400 });
-            if (isDuplicatedMovie({ newMovies: movies, movies: state.movies })) throw error({ message: 'Movie already exists', code: 409 });
+            if (isGenreNotCorrect({ genres: state.genres, movies })) {
+                throw error({ message: 'Genre is not correct!', code: 400 })
+            };
+            if (isDuplicatedMovie({ newMovies: movies, movies: state.movies })) {
+                throw error({ message: 'Movie already exists', code: 409 })
+            };
             state.movies = state.movies.concat(movies.map(parseIncomingMovie(state.movies.length)));
         },
         get: ({ genres = null, duration = null }) => {

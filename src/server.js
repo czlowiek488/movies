@@ -15,6 +15,9 @@ module.exports = ({ port }) => {
 
     const accessable = {
         addEndpoint: ({ method, path, schema, handler, parser = null }) => {
+            if ([method, path, schema, handler].some(v => v === undefined || v === null)) {
+                throw error('Adding endpoint with missing required properties')
+            };
             app[method](path, (req, res, next) => {
                 let payload = {
                     query: req.query,

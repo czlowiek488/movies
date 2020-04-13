@@ -1,4 +1,4 @@
-const { random } = require('../core/random');
+const { random } = require('../../core/random');
 
 
 exports.getMoviesBetween = (movies, start, end) =>
@@ -10,20 +10,26 @@ exports.getRandomElement = (arr) =>
 exports.getMoviesWithGenres = movies => genres =>
     movies.filter(movie => genres.every(genre => movie.genres.includes(genre)));
 
-
+/**
+ * @name getAllCombinations
+ * @description
+ * alghoritm was copied from stackoverflow and changed a bit to adjust for current requirements
+ * - in last line sort was applied
+ * https://stackoverflow.com/a/59942031/9731304
+ */
 exports.getAllCombinations = (array) => {
-    const combinations = [];
-    let bits = [];
+    const combi = [];
+    let temp = [];
     const slent = Math.pow(2, array.length);
 
     for (let i = 0; i < slent; i++) {
-        bits = [];
+        temp = [];
         for (let j = 0; j < array.length; j++) {
-            if ((i & Math.pow(2, j))) bits.push(array[j]);
+            if ((i & Math.pow(2, j))) temp.push(array[j]);
         }
-        if (bits.length > 0) combinations.push(bits);
+        if (temp.length > 0) combi.push(temp);
     }
-    return combinations.reverse();
+    return combi.sort((a, b) => b.length - a.length);
 }
 
 exports.uniqueObject = field => (acc, object) => {
@@ -33,7 +39,7 @@ exports.uniqueObject = field => (acc, object) => {
 }
 
 exports.parseIncomingMovie = movies_length => (movie, index) => {
-    movie.id = movies_length + index;
+    movie.id = movies_length + index + 1;
     movie.genres = movie.genres.sort();
     return movie;
 };
