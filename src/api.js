@@ -17,7 +17,7 @@ const {
 
 module.exports = async ({ databaseFilePath, fileEncoding, fileUpdateDelay }) => {
     if ([databaseFilePath, fileEncoding, fileUpdateDelay].some(field => field === null || field === undefined)) {
-        error({ message: 'Config is missing required fields' });
+        throw error({ message: 'Api config is missing required fields' });
     }
     const absDatabaseFilePath = resolve(databaseFilePath);
 
@@ -33,8 +33,8 @@ module.exports = async ({ databaseFilePath, fileEncoding, fileUpdateDelay }) => 
 
     const accessable = {
         add: (movies) => {
-            if (isGenreNotCorrect({ genres: state.genres, movies })) error({ message: 'Genre is not correct!', code: 400 });
-            if (isDuplicatedMovie({ newMovies: movies, movies: state.movies })) error({ message: 'Movie already exists', code: 409 });
+            if (isGenreNotCorrect({ genres: state.genres, movies })) throw error({ message: 'Genre is not correct!', code: 400 });
+            if (isDuplicatedMovie({ newMovies: movies, movies: state.movies })) throw error({ message: 'Movie already exists', code: 409 });
             state.movies = state.movies.concat(movies.map(parseIncomingMovie(state.movies.length)));
         },
         get: ({ genres = null, duration = null }) => {
