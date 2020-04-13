@@ -1,12 +1,11 @@
 {
   "name": "recruitment-task-v2",
   "version": "1.0.0",
-  "description": "Hey there!",
   "main": "index.js",
   "scripts": {
     "test": "jest ./tests/*"
   },
-  "author": "",
+  "author": "Łukasz Klejszta",
   "license": "ISC",
   "pre-commit": [
     "test"
@@ -15,7 +14,8 @@
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "pm2": "^4.2.3"
   },
   "devDependencies": {
     "eslint": "^5.5.0",

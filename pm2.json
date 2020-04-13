@@ -2,7 +2,7 @@
     "apps": [
         {
             "name": "app",
-            "sript": "./services/app.js"
+            "script": "./services/app.js"
         }
     ]
 }
